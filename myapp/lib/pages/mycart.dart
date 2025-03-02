@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+class MyCartPage extends StatelessWidget {
+  const MyCartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text("My Cart"),
-        backgroundColor: Colors.green,
+        title: const Text('My Cart'),
       ),
-      body: Container(
-        color: Colors.green[100],
-        child: ListView(
-          children: const [
-            CartItem(
-              itemName: "Turmeric",
-              price: "200.00",
-              quantity: "4",
-              pricePerItem: "50/item",
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Your Cart Items',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            CartItem(
-              itemName: "Cloves",
-              price: "100.00",
-              quantity: "5",
-              pricePerItem: "20/item",
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 3, // Replace with actual cart item count
+                itemBuilder: (context, index) {
+                  return const Card(
+                    child: ListTile(
+                      title: Text('Item Name'),
+                      subtitle: Text('Item Description'),
+                      trailing: Text('\$XX.XX'), // Replace with actual price
+                    ),
+                  );
+                },
+              ),
             ),
-            CartItem(
-              itemName: "Ginger",
-              price: "140.00",
-              quantity: "2",
-              pricePerItem: "70/item",
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Add functionality to proceed to checkout
+              },
+              child: const Text('Proceed to Checkout'),
             ),
-            OrderSummary(),
           ],
         ),
       ),
     );
   }
 }
-
 class CartItem extends StatelessWidget {
   final String itemName;
   final String price;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,12 @@ class _MyHomePageState extends State<AccCreation> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+            );
+          },
         ),
         actions: [
           IconButton(
