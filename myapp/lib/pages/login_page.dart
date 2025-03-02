@@ -129,9 +129,10 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+
                       );
                     },
                     style: TextButton.styleFrom(
@@ -145,9 +146,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const AccCreation(title: 'Create an Account')),
+
                       );
                     },
                     style: TextButton.styleFrom(

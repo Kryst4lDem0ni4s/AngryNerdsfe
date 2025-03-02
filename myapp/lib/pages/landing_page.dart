@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'language_selection_2.dart';
+import 'package:myapp/pages/login_page.dart'; // Import LoginPage
+
 
 void main() {
   runApp(const MyApp());
@@ -39,7 +41,11 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+
         onPressed: () {
           Navigator.push(
             context,
@@ -48,8 +54,21 @@ class MyHomePage extends StatelessWidget {
             ),
           );
         },
+      ),
+      FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+          );
+        },
+
         child: const Icon(Icons.subdirectory_arrow_right),
       ),
+    ],
+    ),
     );
   }
 }

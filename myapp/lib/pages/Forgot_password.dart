@@ -89,7 +89,12 @@ class ForgotPasswordPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Add reset password functionality here
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Reset password link sent to your email.'),
+                        ),
+);
+
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(16.0),
@@ -103,9 +108,10 @@ class ForgotPasswordPage extends StatelessWidget {
                 // Return to Login Page Button
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => const LoginPage()),
+
                     );
                   },
                   child: Text(

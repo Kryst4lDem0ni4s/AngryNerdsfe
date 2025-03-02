@@ -68,11 +68,12 @@ class _LanguageSelectionPageState2 extends State<LanguageSelectionPage2> {
                 // Handle language selection
                 if (selectedLanguage != null) {
                   // Navigate to the next screen based on selected language
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(
+    builder: (context) => const LoginPage(),
+  ),
+
                   );
                   // Show an error message
                 } else {
