@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'login_page.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class TransportationPage extends StatelessWidget {
+  const TransportationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search'),
+        title: const Text('Transportation Services'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -22,14 +22,14 @@ class SearchPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Search for Farms or Stores',
+              'Search for Transportation Services',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Enter your search query',
+                labelText: 'Enter service name or category',
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -37,10 +37,14 @@ class SearchPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to perform the search
+                // Add logic to perform the search for transportation services
               },
               child: const Text('Search'),
             ),
+            const SizedBox(height: 20),
+            // Placeholder for displaying search results
+            const Text('Available Transportation Services:', style: TextStyle(fontSize: 18)),
+            // Add a ListView or similar widget to display results
           ],
         ),
       ),

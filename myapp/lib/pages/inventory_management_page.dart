@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'login_page.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class InventoryManagementPage extends StatelessWidget {
+  const InventoryManagementPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search'),
+        title: const Text('Inventory Management'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -22,14 +22,14 @@ class SearchPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Search for Farms or Stores',
+              'Manage Your Inventory',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Enter your search query',
+                labelText: 'Search for items',
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -37,10 +37,14 @@ class SearchPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to perform the search
+                // Add logic to perform the search for inventory items
               },
               child: const Text('Search'),
             ),
+            const SizedBox(height: 20),
+            // Placeholder for displaying inventory items
+            const Text('Your Inventory Items:', style: TextStyle(fontSize: 18)),
+            // Add a ListView or similar widget to display items
           ],
         ),
       ),
