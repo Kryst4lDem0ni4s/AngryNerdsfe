@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'acc_creation.dart';
+import 'Forgot_password.dart'; // Ensure this import is correct
+import 'home_page.dart'; // Ensure this import is correct
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -101,8 +104,9 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('प्रवेश सफल!')),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const HomePage()),
                         );
                       }
                     },
@@ -124,7 +128,28 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 250, 25, 25),
+                      ),
+                    ),
+                    child: const Text('पासवर्ड भूल गए?'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AccCreation(title: 'Create an Account')),
+                      );
+                    },
                     style: TextButton.styleFrom(
                       textStyle: const TextStyle(
                         fontSize: 16,

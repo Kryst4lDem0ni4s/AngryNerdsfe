@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/login_page.dart';
 
 void main() {
   runApp(const ForgotPasswordPage());
@@ -31,7 +32,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      // Add back functionality here
+                      Navigator.pop(context);
                     },
                   ),
                 ),
@@ -102,7 +103,10 @@ class ForgotPasswordPage extends StatelessWidget {
                 // Return to Login Page Button
                 TextButton(
                   onPressed: () {
-                    // Add return to login page functionality here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
                   },
                   child: Text(
                     'Return to Login Page',
