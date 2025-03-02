@@ -64,8 +64,8 @@ class InventoryPage2 extends StatelessWidget {
         onPressed: () {
           // Add voice input functionality
         },
-        child: const Icon(Icons.mic),
         backgroundColor: Colors.green,
+        child: const Icon(Icons.mic),
       ),
     );
   }

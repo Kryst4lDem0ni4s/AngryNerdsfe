@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import http package
+import 'dart:convert'; // Import for json encoding/decoding
+
 import 'package:myapp/pages/login_page.dart';
-import 'package:myapp/pages/home_page.dart'; // Import HomePage
+// Import HomePage
+import 'package:myapp/pages/otp_verification.dart'; // Import OtpVerificationPage
+
 
 
 void main() {
@@ -32,6 +37,11 @@ class AccCreation extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<AccCreation> {
+  final _formKey = GlobalKey<FormState>(); // Define the form key
+  final TextEditingController emailController = TextEditingController(); // Define email controller
+  final TextEditingController passwordController = TextEditingController(); // Define password controller
+  final TextEditingController confirmPasswordController = TextEditingController(); // Define confirm password controller
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,13 +139,35 @@ class _MyHomePageState extends State<AccCreation> {
               ),
               const SizedBox(height: 32),
               ElevatedButton(
-                onPressed: () {
-                  // Add OTP verification logic here
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    // Prepare the API request
+                    final response = await http.post(
+                      Uri.parse('https://yourapi.com/api/auth/register'), // Replace with your API URL
+                      headers: <String, String>{
+                        'Content-Type': 'application/json; charset=UTF-8',
+                      },
+                      body: jsonEncode(<String, String>{
+                        'email': emailController.text,
+                        'password': passwordController.text,
+                      }),
+                    );
+
+                    if (response.statusCode == 200) {
+                      // If the server returns a 200 OK response, navigate to OTP verification
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const OtpVerificationPage()),
+                      );
+                    } else {
+                      // If the server did not return a 200 OK response, show an error message
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Registration failed: ${response.body}')),
+                      );
+                    }
+                  }
                 },
+
 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,

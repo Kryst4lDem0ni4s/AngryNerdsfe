@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'payment_page.dart'; // Import the PaymentPage
+
 
 class MyCartPage extends StatelessWidget {
   const MyCartPage({Key? key}) : super(key: key);
@@ -44,8 +46,15 @@ class MyCartPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add functionality to proceed to checkout
+                // Navigate to payment page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PaymentPage(),
+                  ),
+                );
               },
+
               child: const Text('Proceed to Checkout'),
             ),
           ],

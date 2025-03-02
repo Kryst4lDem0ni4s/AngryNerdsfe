@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/home_page.dart';
 // import 'pages/login_page.dart';
 // import 'images/images.dart';
-import 'pages/landing_page.dart';
+// import 'pages/landing_page.dart';
 // import 'pages/language_select.dart';
 // import 'pages/acc_creation.dart';
 // import 'pages/Forgot_password.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }

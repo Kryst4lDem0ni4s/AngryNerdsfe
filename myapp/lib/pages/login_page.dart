@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import http package
+import 'dart:convert'; // Import for json encoding/decoding
+
 import 'acc_creation.dart';
 import 'Forgot_password.dart'; // Ensure this import is correct
 import 'home_page.dart'; // Ensure this import is correct
@@ -12,6 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController(); // Add email controller
+  final TextEditingController passwordController = TextEditingController(); // Add password controller
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 40),
                   TextFormField(
+                    controller: emailController, // Set controller for email field
                     decoration: InputDecoration(
                       labelText: 'ईमेल',
                       prefixIcon: const Icon(Icons.person),
@@ -73,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    controller: passwordController, // Set controller for password field
                     decoration: InputDecoration(
                       labelText: 'पासवर्ड',
                       prefixIcon: const Icon(Icons.lock),
@@ -102,14 +109,35 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const HomePage()),
+                        // Prepare the API request
+                        final response = await http.post(
+                          Uri.parse('https://yourapi.com/api/auth/login'), // Replace with your API URL
+                          headers: <String, String>{
+                            'Content-Type': 'application/json; charset=UTF-8',
+                          },
+                          body: jsonEncode(<String, String>{
+                            'email': emailController.text, // Use email controller
+                            'password': passwordController.text, // Use password controller
+                          }),
                         );
+
+                        if (response.statusCode == 200) {
+                          // If the server returns a 200 OK response, navigate to HomePage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const HomePage()),
+                          );
+                        } else {
+                          // If the server did not return a 200 OK response, show an error message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Login failed: ${response.body}')),
+                          );
+                        }
                       }
                     },
+
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 250, 210, 34),
                       padding: const EdgeInsets.symmetric(
@@ -129,10 +157,9 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   TextButton(
                     onPressed: () {
-Navigator.pushReplacement(
-  context,
-  MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
-
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
                       );
                     },
                     style: TextButton.styleFrom(
@@ -149,7 +176,6 @@ Navigator.pushReplacement(
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const AccCreation(title: 'Create an Account')),
-
                       );
                     },
                     style: TextButton.styleFrom(
