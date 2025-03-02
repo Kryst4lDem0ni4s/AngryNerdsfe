@@ -83,6 +83,12 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Navigate back to the home page
+            },
+            child: const Text('Back to Home'),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: messages.length,

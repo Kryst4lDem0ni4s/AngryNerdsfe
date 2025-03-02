@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/login_page.dart';
+import 'package:myapp/pages/home_page.dart'; // Import HomePage
+
 
 void main() {
   runApp(const MyApp());
@@ -127,7 +129,14 @@ class _MyHomePageState extends State<AccCreation> {
               ),
               const SizedBox(height: 32),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Add OTP verification logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   padding: const EdgeInsets.symmetric(horizontal: 48),

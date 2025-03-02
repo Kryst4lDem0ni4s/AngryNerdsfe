@@ -26,7 +26,7 @@ class CommunityForumPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            // Handle back action
+            Navigator.pop(context); // Navigate back to the home page
           },
         ),
         title: const Text('Community Forum'),
@@ -106,7 +106,9 @@ class CommunityForumPage extends StatelessWidget {
           children: [
             IconButton(
               icon: const Icon(Icons.home),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context); // Navigate back to the home page
+              },
             ),
             IconButton(
               icon: const Icon(Icons.notifications),

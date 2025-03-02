@@ -10,7 +10,16 @@ class InventoryPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Inventory'),
       ),
-      body: SingleChildScrollView(
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Navigate back to the home page
+            },
+            child: const Text('Back to Home'),
+        ),
+          SingleChildScrollView(
+
         child: Column(
           children: [
             Container(
@@ -118,6 +127,8 @@ class InventoryPage extends StatelessWidget {
           ],
         ),
       ),
+    ],
+    ),
     );
   }
 }

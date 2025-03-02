@@ -28,8 +28,8 @@ class ItemDetailPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            // Handle back button press
-          },
+          Navigator.pop(context); // Navigate back to the home page
+        },
         ),
         title: const Text('Item Detail'),
       ),

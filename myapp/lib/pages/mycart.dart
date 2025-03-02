@@ -9,7 +9,15 @@ class MyCartPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Cart'),
       ),
-      body: Padding(
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Navigate back to the home page
+            },
+            child: const Text('Back to Home'),
+          ),
+          Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +50,8 @@ class MyCartPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+        ],
       ),
     );
   }
