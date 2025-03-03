@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'payment_status_page.dart'; // Import the PaymentStatusPage
+import 'payment_history_page.dart'; // Import the PaymentHistoryPage
+
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -39,7 +41,6 @@ class PaymentPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Navigate to payment status page
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -47,9 +48,21 @@ class PaymentPage extends StatelessWidget {
                   ),
                 );
               },
-
               child: const Text('Initiate Payment'),
             ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PaymentHistoryPage(),
+                  ),
+                );
+              },
+              child: const Text('View Payment History'),
+            ),
+
           ],
         ),
       ),

@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'dart:io'; // For File handling
+
+Future<String> uploadAudio(File audioFile) async {
+  // TODO: Implement audio upload logic
+  // final uri = Uri.parse('https://yourapi.com/api/chat/audio/upload');
+  // final request = http.MultipartRequest('POST', uri)
+  //   ..files.add(await http.MultipartFile.fromPath('audio', audioFile.path));
+  // final response = await request.send();
+  // return response.statusCode == 200 ? 'Success' : 'Error';
+  return 'Success'; // Placeholder
+}
+
+
 // import 'login_page.dart';
 
 class ChatbotPage extends StatelessWidget {
@@ -35,12 +48,39 @@ class ChatbotPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add logic to send the query to the chatbot
-              },
-              child: const Text('Send Query'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    // Send text query to chatbot
+                    // Replace with actual API call
+                    final response = 'Chatbot response'; // Placeholder for actual response
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(response)),
+                    );
+                  },
+                  child: const Text('Send Text Query'),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    // Handle audio recording
+                    // TODO: Add audio recording logic
+                    
+                    // Upload audio file
+                    // final audioFile = ...; // Get recorded audio file
+                    // final response = await uploadAudio(audioFile);
+                    
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Audio uploaded successfully')),
+                    );
+                  },
+
+                  child: const Icon(Icons.mic),
+                ),
+              ],
             ),
+
           ],
         ),
       ),
