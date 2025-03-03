@@ -22,10 +22,19 @@ class PaymentStatusPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                // Handle payment confirmation
+                // Add logic to confirm payment
+              },
+              child: const Text('Confirm Payment'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
                 Navigator.pop(context); // Navigate back to the previous page
               },
               child: const Text('Back to Cart'),
             ),
+
           ],
         ),
       ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'payment_status_page.dart'; // Import the PaymentStatusPage
 
-import 'package:myapp/pages/payment_status_page.dart';
-
 class PaymentPage extends StatelessWidget {
   const PaymentPage({Key? key}) : super(key: key);
 
