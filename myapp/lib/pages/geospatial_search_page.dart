@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class WeatherPage extends StatelessWidget {
-  const WeatherPage({Key? key}) : super(key: key);
+class GeospatialSearchPage extends StatelessWidget {
+  const GeospatialSearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather Updates'),
+        title: const Text('Geospatial Search'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the home page
+            Navigator.pop(context); // Navigate back to the previous page
           },
         ),
       ),
@@ -21,14 +21,14 @@ class WeatherPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Get Real-Time Weather Updates',
+              'Search for Nearby Locations',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Enter location',
+                labelText: 'Enter location or coordinates',
                 filled: true,
                 fillColor: Colors.white,
               ),
@@ -36,15 +36,14 @@ class WeatherPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Logic to trigger fetching weather data can be added here
+                // Logic to perform geospatial search
               },
-              child: const Text('Get Weather'),
+              child: const Text('Search'),
             ),
             const SizedBox(height: 20),
-            const Text('Weather Information:', style: TextStyle(fontSize: 18)),
-            const SizedBox(height: 20),
-            // Placeholder for displaying weather results
-            const Text('Weather data will be displayed here.', style: TextStyle(fontSize: 16)),
+            // Placeholder for displaying search results
+            const Text('Search Results:', style: TextStyle(fontSize: 18)),
+            // Add a widget to display search results
           ],
         ),
       ),

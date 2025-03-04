@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'resource_optimization_page.dart'; // Import the resource optimization page
-import 'transport_route_page.dart'; // Import the transport route page
+import 'remote_sensing_page.dart'; // Import the remote sensing page
+import 'ai_history_page.dart'; // Import the AI history page
+import 're_run_analysis_page.dart'; // Import the re-run analysis page
+import 'queue_page.dart'; // Import the queue page
+import 'schedule_page.dart'; // Import the schedule page
 
 class AggregationPage extends StatelessWidget {
   const AggregationPage({Key? key}) : super(key: key);
@@ -31,19 +34,46 @@ class AggregationPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ResourceOptimizationPage()),
+                  MaterialPageRoute(builder: (context) => const RemoteSensingPage()),
                 );
               },
-              child: const Text('Go to Resource Optimization'),
+              child: const Text('Go to Remote Sensing'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const TransportRoutePage()),
+                  MaterialPageRoute(builder: (context) => const AIHistoryPage()),
                 );
               },
-              child: const Text('Go to Transport Route'),
+              child: const Text('View AI History'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReRunAnalysisPage()),
+                );
+              },
+              child: const Text('Re-run Analysis'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const QueuePage()),
+                );
+              },
+              child: const Text('Add to Queue'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SchedulePage()),
+                );
+              },
+              child: const Text('Schedule Task'),
             ),
             const SizedBox(height: 20),
             // Placeholder for displaying results
