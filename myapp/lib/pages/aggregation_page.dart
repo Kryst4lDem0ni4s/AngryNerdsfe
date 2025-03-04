@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'login_page.dart';
+import 'resource_optimization_page.dart'; // Import the resource optimization page
+import 'transport_route_page.dart'; // Import the transport route page
 
 class AggregationPage extends StatelessWidget {
   const AggregationPage({Key? key}) : super(key: key);
@@ -22,27 +23,30 @@ class AggregationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Find Transportation Services',
+              'Market Forecasting & Trends:',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Search for services',
-                filled: true,
-                fillColor: Colors.white,
-              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to perform the search for transportation services
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ResourceOptimizationPage()),
+                );
               },
-              child: const Text('Search'),
+              child: const Text('Go to Resource Optimization'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TransportRoutePage()),
+                );
+              },
+              child: const Text('Go to Transport Route'),
             ),
             const SizedBox(height: 20),
-            // Placeholder for displaying search results
+            // Placeholder for displaying results
             const Text('Available Services:', style: TextStyle(fontSize: 18)),
             // Add a ListView or similar widget to display results
           ],
