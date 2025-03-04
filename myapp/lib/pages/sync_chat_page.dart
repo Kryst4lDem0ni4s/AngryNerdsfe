@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class GeospatialAlertsPage extends StatelessWidget {
-  const GeospatialAlertsPage({Key? key}) : super(key: key);
+class SyncChatPage extends StatelessWidget {
+  const SyncChatPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Geospatial Alerts'),
+        title: const Text('Sync Chat'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -21,22 +21,20 @@ class GeospatialAlertsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Retrieve Location-Based Alerts',
+              'Sync Your Offline Chat Messages',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Logic to retrieve geospatial alerts
-                // Example: Fetch alerts from the backend and update the UI
+                // Logic to sync offline chat messages
               },
-              child: const Text('Get Alerts'),
+              child: const Text('Sync Chat'),
             ),
             const SizedBox(height: 20),
-            // Placeholder for displaying alerts results
-            const Text('Alerts Information:', style: TextStyle(fontSize: 18)),
-            // Add a widget to display alerts information
-            // Example: ListView to show alerts
+            // Placeholder for displaying sync results
+            const Text('Sync Results:', style: TextStyle(fontSize: 18)),
+            // Add a widget to display sync results
           ],
         ),
       ),

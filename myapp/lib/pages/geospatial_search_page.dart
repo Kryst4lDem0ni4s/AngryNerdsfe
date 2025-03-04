@@ -37,13 +37,27 @@ class GeospatialSearchPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Logic to perform geospatial search
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Search functionality coming soon!'),
+                  ),
+                );
               },
               child: const Text('Search'),
             ),
             const SizedBox(height: 20),
-            // Placeholder for displaying search results
             const Text('Search Results:', style: TextStyle(fontSize: 18)),
-            // Add a widget to display search results
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 0, // Placeholder for the number of results
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: const Text('Result Item'), // Placeholder for result item
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

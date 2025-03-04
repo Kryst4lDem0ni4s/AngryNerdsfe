@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class GeospatialAlertsPage extends StatelessWidget {
-  const GeospatialAlertsPage({Key? key}) : super(key: key);
+class SyncConflictPage extends StatelessWidget {
+  const SyncConflictPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Geospatial Alerts'),
+        title: const Text('Resolve Conflicts'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -21,22 +21,20 @@ class GeospatialAlertsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Retrieve Location-Based Alerts',
+              'Resolve Data Conflicts During Sync',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Logic to retrieve geospatial alerts
-                // Example: Fetch alerts from the backend and update the UI
+                // Logic to resolve data conflicts
               },
-              child: const Text('Get Alerts'),
+              child: const Text('Resolve Conflicts'),
             ),
             const SizedBox(height: 20),
-            // Placeholder for displaying alerts results
-            const Text('Alerts Information:', style: TextStyle(fontSize: 18)),
-            // Add a widget to display alerts information
-            // Example: ListView to show alerts
+            // Placeholder for displaying conflict resolution results
+            const Text('Conflict Resolution Results:', style: TextStyle(fontSize: 18)),
+            // Add a widget to display resolution results
           ],
         ),
       ),

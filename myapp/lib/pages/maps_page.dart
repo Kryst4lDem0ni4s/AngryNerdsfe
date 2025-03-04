@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'login_page.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart'; // Import Google Maps package
 
 class MapsPage extends StatelessWidget {
   const MapsPage({Key? key}) : super(key: key);
@@ -28,60 +28,29 @@ class MapsPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to display the map
+                // Logic to display the map will be implemented here
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Map display functionality coming soon!'),
+                  ),
+                );
               },
               child: const Text('Show Map'),
             ),
+
             const SizedBox(height: 20),
             // Placeholder for displaying map results
             const Text('Map View:', style: TextStyle(fontSize: 18)),
             const SizedBox(height: 20),
             Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'Map will be displayed here',
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.zoom_in),
-                        onPressed: () {
-                          // Zoom in functionality
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.zoom_out),
-                        onPressed: () {
-                          // Zoom out functionality
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.my_location),
-                        onPressed: () {
-                          // Current location functionality
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+              child: GoogleMap(
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(0, 0), // Set initial position
+                  zoom: 2, // Set initial zoom level
+                ),
+                markers: Set<Marker>(), // Add markers here
               ),
             ),
-
-
           ],
         ),
       ),
