@@ -26,25 +26,43 @@ class TransportationPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            const TextField(
+            TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Enter service name or category',
                 filled: true,
                 fillColor: Colors.white,
               ),
+              onChanged: (value) {
+                // Handle input changes
+              },
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to perform the search for transportation services
+                // Logic to perform the search for transportation services
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Search functionality coming soon!'),
+                  ),
+                );
+                // Here you would typically call a function to fetch data from the backend
               },
               child: const Text('Search'),
             ),
             const SizedBox(height: 20),
-            // Placeholder for displaying search results
             const Text('Available Transportation Services:', style: TextStyle(fontSize: 18)),
-            // Add a ListView or similar widget to display results
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10, // Example: replace with actual number of results
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: const Text('Transportation Service Item'), // Placeholder for result item
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

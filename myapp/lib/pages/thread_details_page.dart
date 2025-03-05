@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<List<Map<String, dynamic>>> fetchComments(String threadId) async {
-  final response = await http.get(
-    Uri.parse('https://yourapi.com/api/forum/threads/$threadId/comments'),
-  );
-
-  if (response.statusCode == 200) {
-    final List<dynamic> commentJson = json.decode(response.body);
-    return commentJson.map((json) => json as Map<String, dynamic>).toList();
-  } else {
-    throw Exception('Failed to load comments');
-  }
-}
 
 Future<List<Map<String, dynamic>>> fetchComments(String threadId) async {
   final response = await http.get(
