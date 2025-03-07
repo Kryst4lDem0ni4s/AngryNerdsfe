@@ -1,43 +1,55 @@
 import 'package:flutter/material.dart';
-import 'thread_details_page.dart'; // Import the ThreadDetailsPage
-
 
 class ThreadsPage extends StatelessWidget {
-  final int categoryId;
-
-  const ThreadsPage({Key? key, required this.categoryId}) : super(key: key);
+  const ThreadsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Threads in Category $categoryId'),
+        title: const Text('Forum Threads'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to the previous page
+          },
+        ),
       ),
-      body: ListView.builder(
-        itemCount: 5, // Replace with actual number of threads
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('Thread ${index + 1}'),
-            subtitle: const Text('Description of the thread'),
-            trailing: const Icon(Icons.arrow_forward),
-            onTap: () {
-              final thread = {
-                'id': '${index + 1}',
-                'title': 'Thread ${index + 1}',
-                'content': 'Description of the thread'
-              }; // Replace with actual thread data
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ThreadDetailsPage(threadId: thread['id']!),
-
-                ),
-              );
-            },
-
-
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Threads',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5, // Example thread count
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text('Thread Title $index'),
+                    subtitle: Text('This is a sample thread description.'),
+                    onTap: () {
+                      // Logic to navigate to thread details
+                    },
+                  );
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Logic to create a new thread
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('New thread created!')),
+                );
+              },
+              child: const Text('Create New Thread'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'login_page.dart';
 
 class ChatWithCustomersPage extends StatelessWidget {
   const ChatWithCustomersPage({Key? key}) : super(key: key);
@@ -12,23 +11,37 @@ class ChatWithCustomersPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the home page
+            Navigator.pop(context); // Navigate back to the previous page
           },
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Customer Messages',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10, // Example message count
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text('Customer Message $index'),
+                    subtitle: Text('This is a sample message.'),
+                  );
+                },
+              ),
             ),
-            SizedBox(height: 20),
-            // Placeholder for displaying customer messages
-            Text('No new messages', style: TextStyle(fontSize: 18)),
-            // Add a ListView or similar widget to display messages
+            TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Type your message',
+              ),
+              onSubmitted: (value) {
+                // Logic to send the message
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Message sent: $value')),
+                );
+              },
+            ),
           ],
         ),
       ),

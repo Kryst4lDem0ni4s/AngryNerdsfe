@@ -39,7 +39,16 @@ class MyApp extends StatelessWidget {
       title: 'Login App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF0d6bd6), // Blue color
+        scaffoldBackgroundColor: const Color(0xFFFFFFFF), // White color
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: const Color(0xFF0d6bd6), // Blue color
+          tertiary: const Color(0xFF34a753), // Green color
+          inversePrimary: const Color(0xFFF9BA06), // Yellow color
+          primary: const Color(0xFFff0000), // Red color
+          surface: const Color(0xFFFFFFFF), // White color
+        ),
+
       ),
 
       home: const HomePage(),

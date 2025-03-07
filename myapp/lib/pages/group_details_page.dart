@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GroupDetailsPage extends StatelessWidget {
-  final String groupId;
+  final String groupId; // Add groupId parameter
 
   const GroupDetailsPage({Key? key, required this.groupId}) : super(key: key);
 
@@ -9,28 +9,55 @@ class GroupDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Group $groupId Details'),
+        title: const Text('Group Details'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to the previous page
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Group Information',
+            Text(
+              'Group Name: $groupId', // Use groupId to display the group name
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             const Text(
-              'Group description goes here...',
+              'Description of the group goes here. This is where you can provide details about the group and its purpose.',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Members:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ElevatedButton(
+              onPressed: () {
+                // Logic to join the group
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('You have joined the group!')),
+                );
+              },
+              child: const Text('Join Group'),
             ),
-            // Add a ListView or similar widget to display members
+            const SizedBox(height: 20),
+            const Text(
+              'Members',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5, // Example member count
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text('Member $index'),
+                    subtitle: Text('This is a sample member description.'),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

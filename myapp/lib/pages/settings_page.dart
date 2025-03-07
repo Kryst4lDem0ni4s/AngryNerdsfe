@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-// import 'login_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -26,8 +29,9 @@ class SettingsPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Change Name',
                 filled: true,
@@ -35,8 +39,9 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Change Email',
                 filled: true,
@@ -44,8 +49,9 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: passwordController,
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Change Password',
                 filled: true,
@@ -56,7 +62,15 @@ class SettingsPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to save the settings
+                // Logic to save the settings
+                String name = nameController.text;
+                String email = emailController.text;
+                String password = passwordController.text;
+
+                // Here you can add your logic to save the settings
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Settings saved successfully!')),
+                );
               },
               child: const Text('Save Changes'),
             ),

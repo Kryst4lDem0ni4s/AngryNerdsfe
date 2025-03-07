@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'login_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -34,13 +33,60 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add logic to edit profile
+                _showEditProfileDialog(context);
               },
               child: const Text('Edit Profile'),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _showEditProfileDialog(BuildContext context) {
+    final TextEditingController nameController = TextEditingController(text: 'John Doe');
+    final TextEditingController emailController = TextEditingController(text: 'johndoe@example.com');
+    final TextEditingController phoneController = TextEditingController(text: '+1234567890');
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Edit Profile'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Logic to save changes
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

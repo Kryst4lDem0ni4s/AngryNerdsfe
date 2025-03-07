@@ -1,48 +1,55 @@
 import 'package:flutter/material.dart';
 
+import 'package:myapp/widgets/base_layout.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: DashboardPage(),
+      home: BaseLayout(bottomNavigationBar: null,
+      child: DashboardPage()),
     );
   }
 }
+
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        toolbarHeight: 250,
-        title: const Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://via.placeholder.com/50'), // Placeholder for user image
-            ),
-            SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Welcome', style: TextStyle(fontSize: 18)),
-                Text('Sunil Sharma (Farmer)', style: TextStyle(fontSize: 14)),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
+return BaseLayout(
+  bottomNavigationBar: null,
+  child: Scaffold(
+    appBar: AppBar(
+      backgroundColor: Colors.green,
+      toolbarHeight: 250,
+      title: const Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://via.placeholder.com/50'), // Placeholder for user image
+          ),
+          SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Welcome', style: TextStyle(fontSize: 18)),
+              Text('Sunil Sharma (Farmer)', style: TextStyle(fontSize: 14)),
+            ],
           ),
         ],
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () {},
+        ),
+      ],
+    ),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -149,7 +156,7 @@ class DashboardPage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
   // Helper methods for building widgets
