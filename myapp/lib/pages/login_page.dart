@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http; // Import http package
 import 'dart:convert'; // Import for json encoding/decoding
 
 import 'acc_creation.dart';
-import 'Forgot_password.dart'; // Ensure this import is correct
+import 'forgot_password.dart'; // Ensure this import is correct
 import 'home_page.dart'; // Ensure this import is correct
 
 class LoginPage extends StatefulWidget {
