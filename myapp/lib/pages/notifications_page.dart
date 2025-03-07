@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 class NotificationsPage extends StatelessWidget {
   NotificationsPage({Key? key}) : super(key: key);
 
-  final List<Map<String, dynamic>> notifications = [
-    {
-      'id': '1',
-      'title': 'New Message',
-      'message': 'You have received a new message.',
-      'isRead': false,
-    },
-    {
-      'id': '2',
-      'title': 'Update Available',
-      'message': 'A new update is available for your app.',
-      'isRead': false,
-    },
-  ]; // Dummy data for notifications
+  List<Map<String, dynamic>> notifications = []; // Initialize with an empty list
+
+  void subscribeToNotifications() {
+    print('Subscribed to notifications');
+    // Logic for subscribing to notifications can be added here
+  }
+
+  void unsubscribeFromNotifications() {
+    print('Unsubscribed from notifications');
+    // Logic for unsubscribing from notifications can be added here
+  }
+
+
+
 
   void markNotificationAsRead(String id) {
     // Logic to mark notification as read
@@ -52,15 +52,23 @@ class NotificationsPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: subscribeToNotifications,
+              child: Text('Subscribe to Notifications'),
+            ),
+            ElevatedButton(
+              onPressed: unsubscribeFromNotifications,
+              child: Text('Unsubscribe from Notifications'),
+            ),
+
             Expanded(
               child: ListView.builder(
                 itemCount: notifications.length, // Assuming notifications is a list of notification data
                 itemBuilder: (context, index) {
                   final notification = notifications[index];
                   return ListTile(
-                    title: Text(notification['title']),
-                    subtitle: Text(notification['message']),
-
+                    title: Text(notification['title'] ?? 'No Title'),
+                    subtitle: Text(notification['message'] ?? 'No Message'),
                     onTap: () {
                       markNotificationAsRead(notification['id']);
 

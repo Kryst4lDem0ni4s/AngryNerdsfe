@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'thread_details_page.dart'; // Import the ThreadDetailsPage
 
-import 'package:myapp/pages/thread_details_page.dart';
 
 class ThreadsPage extends StatelessWidget {
   final int categoryId;

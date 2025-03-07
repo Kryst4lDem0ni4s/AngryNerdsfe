@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http; // Import http package
 import 'dart:convert'; // Import dart:convert for JSON decoding
-import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http; // Import http package
-import 'dart:convert'; // Import dart:convert for JSON decoding
+// Import http package
+// Import dart:convert for JSON decoding
 
 import 'dart:io';
 

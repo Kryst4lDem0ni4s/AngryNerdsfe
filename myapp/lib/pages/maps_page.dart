@@ -48,7 +48,7 @@ class MapsPage extends StatelessWidget {
                   target: LatLng(0, 0), // Set initial position
                   zoom: 2, // Set initial zoom level
                 ),
-                markers: Set<Marker>(), // Add markers here
+                markers: <Marker>{}, // Add markers here
               ),
             ),
           ],

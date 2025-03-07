@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts; // Import charting library
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Aggregationservice(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
 
 class Aggregationservice extends StatefulWidget {
   const Aggregationservice({Key? key, required this.title}) : super(key: key);
@@ -29,6 +12,33 @@ class Aggregationservice extends StatefulWidget {
 }
 
 class _AggregationserviceState extends State<Aggregationservice> {
+  // Sample data for user engagement metrics
+  final List<charts.Series<UserEngagement, String>> _userEngagementData = [
+    charts.Series<UserEngagement, String>(
+      id: 'User Engagement',
+      domainFn: (UserEngagement engagement, _) => engagement.category,
+      measureFn: (UserEngagement engagement, _) => engagement.value,
+      data: [
+        UserEngagement('Active Users', 120),
+        UserEngagement('Engagement Rate', 75),
+      ],
+    )
+  ];
+
+  // Sample data for sales reports
+  final List<charts.Series<SalesData, String>> _salesData = [
+    charts.Series<SalesData, String>(
+      id: 'Sales',
+      domainFn: (SalesData sales, _) => sales.month,
+      measureFn: (SalesData sales, _) => sales.amount,
+      data: [
+        SalesData('Jan', 1000),
+        SalesData('Feb', 1500),
+        SalesData('Mar', 2000),
+      ],
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +58,14 @@ class _AggregationserviceState extends State<Aggregationservice> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // User Engagement Metrics Section
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'SPLIT BILLS FOR COMMON SERVICES',
+                    'User Engagement Metrics',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
@@ -108,38 +119,85 @@ class _AggregationserviceState extends State<Aggregationservice> {
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                  const Text(
+                  Text(
                     'Sort by Name',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14.0,
                     ),
                   ),
+                  SizedBox(
+                    height: 200,
+                    child: charts.BarChart(
+                      _userEngagementData,
+                      animate: true,
+                    ),
+                  ),
                 ],
               ),
             ),
+            // Sales Reports Section
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildServiceCard(
-                    'Tomato ISBT Gate',
-                    '3 People',
-                    'VIBHOR Transport Trucks',
+                  const Text(
+                    'Sales Reports',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
                   ),
-                  buildServiceCard(
-                    'Rajeev Nagar Storage Group',
-                    '10 People',
-                    'The Confectionary - Stora...',
-                  ),
-                  buildServiceCard(
-                    'Grains monthly',
-                    '4 People',
-                    'Rajesh and Sons - Transp...',
+                  SizedBox(
+                    height: 200,
+                    child: charts.BarChart(
+                      _salesData,
+                      animate: true,
+                    ),
                   ),
                 ],
               ),
             ),
+            // System Usage Statistics Section
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'System Usage Statistics',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  SizedBox(
+                    height: 200,
+                    child: charts.TimeSeriesChart(
+                      [
+                        charts.Series<SystemUsage, DateTime>(
+                          id: 'System Usage',
+                          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+                          domainFn: (SystemUsage usage, _) => usage.time,
+                          measureFn: (SystemUsage usage, _) => usage.value,
+                          data: [
+                            SystemUsage(DateTime.now().subtract(const Duration(days: 2)), 75),
+                            SystemUsage(DateTime.now().subtract(const Duration(days: 1)), 80),
+                            SystemUsage(DateTime.now(), 85),
+                          ],
+                        ),
+                      ],
+                      animate: true,
+                      domainAxis: const charts.DateTimeAxisSpec(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Additional UI elements for system usage can be added here
             Container(
               padding: const EdgeInsets.all(16.0),
               child: const Text(
@@ -174,47 +232,26 @@ class _AggregationserviceState extends State<Aggregationservice> {
       ),
     );
   }
+}
 
-  Widget buildServiceCard(String title, String people, String description) {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            const Icon(Icons.people),
-            const SizedBox(width: 16.0),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  const SizedBox(height: 4.0),
-                  Text(
-                    people,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                    ),
-                  ),
-                  const SizedBox(height: 4.0),
-                  Text(
-                    description,
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Icon(Icons.arrow_forward_ios),
-          ],
-        ),
-      ),
-    );
-  }
+// Data classes for charts
+class UserEngagement {
+  final String category;
+  final int value;
+
+  UserEngagement(this.category, this.value);
+}
+
+class SalesData {
+  final String month;
+  final int amount;
+
+  SalesData(this.month, this.amount);
+}
+
+class SystemUsage {
+  final DateTime time;
+  final double value;
+
+  SystemUsage(this.time, this.value);
 }
